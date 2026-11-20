@@ -23,14 +23,28 @@ public:
 
         //cost += manhattan_distance;
         //val = abs(val);
+        //kruskal = edges
+        int edges;
+        vector<bool> visited(Psize,false);
+        visited[0] = true;
 
-        for (i = 0; i < Psize; i++){
-            for (j = 1; j < Psize; j++) {
-                if ()
-                manhattan_distance = abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]);
+        for (edges = 0; edges < Psize - 1; edges++) {
+            int minimum_distance = 0;
+            int next_pt = -1;
+            for (i = 0; i < Psize; i++){
+                for (j = 1; j < Psize; j++) {
+                    if (visited[i] && !visited[j]) {
+                        manhattan_distance = abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]);
+
+                        if (minimum_distance == 0 || manhattan_distance < minimum_distance) {
+                            minimum_distance = manhattan_distance;
+                            next_pt = j;
+                        }
+                    }
+                }
             }
-            int hold = manhattan_distance;
-            cost += hold;
+            visited[next_pt] = true;
+            cost += minimum_distance;
         }
         //not looking for !visited = 32
         //!visited = 20 - expected output
