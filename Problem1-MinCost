@@ -1,1 +1,41 @@
+#include <vector>
+#include <list>
+#include <iostream>
+using namespace std;
+class Solution {
+public:
+    int minCostConnectPoints(vector<vector<int>>& points) {
+        int i;
+        int j;
+        int cost = 0;
+        int Psize = points.size();
+        cout << Psize;
+        cout << endl;
+        int manhattan_distance;
+        list<vector<int>> n;
+        for(i = 0; i < Psize; i++){
+            n.push_back(points[i]);
+        }
+        
+        for (vector<int>& points : n) {
+            cout << "(" << points[0] << "," << points[1] << ")";
+        }
 
+        //cost += manhattan_distance;
+        //val = abs(val);
+
+        for (i = 0; i < Psize; i++){
+            for (j = 1; j < Psize; j++) {
+                if ()
+                manhattan_distance = abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]);
+            }
+            int hold = manhattan_distance;
+            cost += hold;
+        }
+        //not looking for !visited = 32
+        //!visited = 20 - expected output
+
+        return cost;
+        //cout << endl; 
+    }
+};
