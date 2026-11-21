@@ -1,6 +1,6 @@
 # CSC220-Quiz-2
 
-Group members: 
+**Group members**: 
 Leslie Gonzalez Verdejo, 
 Rehmil Jahan, 
 Tasfia Reza, 
