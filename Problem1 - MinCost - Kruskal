@@ -1,0 +1,62 @@
+#include <vector>
+#include <list>
+#include <iostream>
+using namespace std;
+class Solution {
+public:
+    int minCostConnectPoints(vector<vector<int>>& points) {
+        int i;
+        int j;
+        int cost = 0;
+        int Psize = points.size();
+        cout << Psize;
+        cout << endl;
+        int manhattan_distance;
+
+        //cost += manhattan_distance;
+        //val = abs(val);
+        //kruskal = edges
+
+        vector<int> group;
+        for (i = 0; i < Psize; i++) {
+            group.push_back(i);
+        }
+        
+        vector<vector<int>> edges;
+        for (i = 0; i < Psize; i++) {
+            for (j = i+1; j < Psize; j++) {
+                manhattan_distance = abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]);
+                edges.push_back({manhattan_distance,i,j});
+            }
+        }
+        
+        sort(edges.begin(),edges.end());
+        int edges_connected = 0; //keep track
+
+        for (i = 0; i < edges.size(); i++) {
+            int minimum_distance = edges[i][0];
+            int u = edges[i][1];
+            int v = edges[i][2];
+
+            if(group[u] != group[v]) {
+                cost += minimum_distance;
+                edges_connected++;
+
+                int past_group = group[u];
+                int curr_group = group[v];
+                for (int k = 0; k < Psize; k++) {
+                    if (group[k] == past_group) {
+                        group[k] = curr_group;
+                    }
+                }
+            }
+           if (edges_connected == Psize - 1) break;
+           //needed to ensure max connected edges
+        }
+        //not looking for repeat =  98
+        //w/o repeats = 20 - expected output
+
+        return cost;
+        //cout << endl; 
+    }
+};
